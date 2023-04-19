@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -11,14 +11,18 @@ import {
   Text,
   Select
 } from "@chakra-ui/react";
+import { Form } from "react-router-dom";
+import { getCategory } from "../services/categoryServices";
 
 const Planning = ({ onSave }) => {
-  const [budgetType, setBudgetType] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [totalBudget, setTotalBudget] = useState("");
 
-  const categories = ["Food", "Transportation", "Books"]
+  const [categories, setCategories] = useState([])
+  useEffect(()=> {
+    getCategory()
+    .then(res=> setCategories(res.data))
+    .catch(err=> console.log('e'))
+  })
+
 
   
   const handleSubmit = (event) => {
@@ -35,16 +39,16 @@ const Planning = ({ onSave }) => {
 
   return (
     <Box p={4} borderWidth="1px" borderRadius="lg">
-      <form onSubmit={handleSubmit}>
+      <Form method="post" action="/dashboard/planning">
         <Stack spacing={7}>
           <Text fontSize="lg" fontWeight="bold">
             Create a new budget
           </Text>
           <FormControl>
             <FormLabel>Budget Type</FormLabel>
-            <Select placeholder='Select option' onChange={(event) => setBudgetType(event.target.value)}>
+            <Select placeholder='Select option' name= 'name'>
                 {categories && categories.map(category => (
-                <option value = {budgetType}> {category}</option>
+                <option key={category.id} value = {category.id}> {category.name}</option>
                 ))}
             </Select>
           </FormControl>
@@ -52,16 +56,12 @@ const Planning = ({ onSave }) => {
             <FormLabel>Start date</FormLabel>
             <Input
               type="date"
-              value={startDate}
-              onChange={(event) => setStartDate(event.target.value)}
             />
           </FormControl>
           <FormControl>
             <FormLabel>End date</FormLabel>
             <Input
               type="date"
-              value={endDate}
-              onChange={(event) => setEndDate(event.target.value)}
             />
           </FormControl>
           <FormControl>
@@ -69,8 +69,7 @@ const Planning = ({ onSave }) => {
             <InputGroup>
               <Input
                 type="number"
-                value={totalBudget}
-                onChange={(event) => setTotalBudget(event.target.value)}
+                name="amount"
               />
               <InputRightElement children="Birr" />
             </InputGroup>
@@ -79,7 +78,7 @@ const Planning = ({ onSave }) => {
             Create budget
           </Button>
         </Stack>
-      </form>
+      </Form>
     </Box>
   );
 };
