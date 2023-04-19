@@ -6,8 +6,6 @@ from .planningSerializers import *
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-import json
-from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -80,7 +78,7 @@ def planApi(request):
             return Response(status=500)
     elif request.method == "POST":
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             Plan.objects.create(category = category,creator=request.user,amount = request.data['amount'])
             return Response(status=200)
@@ -108,7 +106,7 @@ def modifyPlanApi(request,pk):
             return Response(status=500)
     elif request.method == 'PUT':
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             plan = Plan.objects.get(id=pk)
             plan.category = category
@@ -136,7 +134,7 @@ def expenseApi(request):
             return Response(status=500)
     elif request.method == "POST":
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             Expense.objects.create(category = category,creator=request.user,amount = request.data['amount'])
             return Response(status=200)
@@ -164,7 +162,7 @@ def modifyExpenseApi(request,pk):
             return Response(status=500)
     elif request.method == 'PUT':
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             expense = Expense.objects.get(id=pk)
             expense.category = category
@@ -195,7 +193,7 @@ def incomeApi(request):
             return Response(status=500)
     elif request.method == "POST":
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             Income.objects.create(category = category,creator=request.user,amount = request.data['amount'])
             return Response(status=200)
@@ -223,7 +221,7 @@ def modifyIncomeApi(request,pk):
             return Response(status=500)
     elif request.method == 'PUT':
         try:
-            categoryId = json.loads(request.data['category'])['id']
+            categoryId = request.data['category']
             category = Category.objects.get(id = categoryId)
             income = Income.objects.get(id=pk)
             income.category = category

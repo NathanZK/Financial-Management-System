@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     creator = models.ForeignKey(User,on_delete=models.CASCADE)
     reason = models.TextField()
+    amount = models.IntegerField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
@@ -18,6 +19,7 @@ class Post(models.Model):
     
 class Donation(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
+    amount = models.IntegerField()
     donator = models.ForeignKey(User,on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
     
