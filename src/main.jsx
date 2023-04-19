@@ -4,10 +4,14 @@ import App from './App'
 
 import { ChakraProvider } from '@chakra-ui/react'
 
+import UserContextProvider from './context/userContext'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <UserContextProvider>
     <ChakraProvider>
     <App />
     </ChakraProvider>
+    </UserContextProvider>
   </React.StrictMode>,
 )

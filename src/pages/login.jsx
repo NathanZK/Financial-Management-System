@@ -1,47 +1,47 @@
 import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Stack, Text, useToast } from "@chakra-ui/react";
 import { useState } from "react";
+import { Form, NavLink, redirect } from "react-router-dom";
+import { auth } from "../services/authService";
 
 const LoginPage = () => {
-  const toast = useToast();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can add your authentication logic
-    // Show success message with toast
-    toast({
-      title: "Logged in",
-      description: "Welcome back!",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
-  };
-
+ 
   return (
     <Box py="10">
       <Box maxW="md" mx="auto" p="6" bg="white" borderRadius="lg" boxShadow="lg" textAlign="center">
         <Text fontSize="2xl" fontWeight="bold" mb="2">Log in to your account</Text>
-        <form onSubmit={handleSubmit}>
+        <Form method="post" action="/login">
           <Stack spacing="4">
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+              <Input name= 'email' type="text" />
             </FormControl>
 
             <FormControl>
               <FormLabel>Password</FormLabel>
-              <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              <Input name= "password" type="password" />
               <FormHelperText>A minimum of 6 characters is required</FormHelperText>
             </FormControl>
 
             <Button type="submit" colorScheme="blue">Log in</Button>
           </Stack>
-        </form>
+        </Form>
+        <NavLink to='/register'>
+          <Text>create new account</Text>
+        </NavLink>
       </Box>
     </Box>
   );
 };
+
+export const saveUser= async ({request}) => {
+  const res= await request.formData()
+  const submission= {
+    email: res.get('email'),
+    password: res.get('password')
+  }
+  
+  auth(submission.email, submission.password)
+  return redirect('/dashboard')
+}
 
 export default LoginPage;
