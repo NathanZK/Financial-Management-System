@@ -1,5 +1,4 @@
 import { Box, Button, FormControl, FormHelperText, FormLabel, Input, Stack, Text, useToast } from "@chakra-ui/react";
-import { useState } from "react";
 import { Form, NavLink, redirect } from "react-router-dom";
 import { auth } from "../services/authService";
 
@@ -41,7 +40,11 @@ export const saveUser= async ({request}) => {
   }
   
   auth(submission.email, submission.password)
-  return redirect('/dashboard')
+  .then(res=> {
+    window.location='/dashboard'
+  })
+  .catch(e=> console.log(e))
+  return null
 }
 
 export default LoginPage;

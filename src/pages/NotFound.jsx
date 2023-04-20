@@ -3,8 +3,8 @@ import { Container, Heading, Image } from "@chakra-ui/react";
 
 function NotFound(props) {
     return (
-        <Container>
-            <Image src='not_found.png' fallbackSrc='https://via.placeholder.com/150' />
+        <Container mt='150px'>
+            <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFc3D5lnamlkQhg78kaJbfZ2317r7TrOQLVg&usqp=CAU' />
             <Heading>Ooops! Not Found</Heading>
         </Container>
     );

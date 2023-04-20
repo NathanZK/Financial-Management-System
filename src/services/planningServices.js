@@ -10,7 +10,7 @@ export async function getPlan() {
 export async function addPlan({request}){
   const res= await request.formData()
   const submission= {
-    name: res.get('name'),
+    category : res.get('name'),
     amount: res.get('amount')
   }
   console.log(submission)
@@ -20,9 +20,14 @@ export async function addPlan({request}){
   return redirect('/dashboard')
 }
 
-export async function editPlan(id, name){
-  http.put(`${config.apiEndpoint}plan/${id}/`, {name})
-  .then(res=> res)
+export async function editPlan(cId, id, amount){
+  const obj= {
+    category : cId,
+    amount : amount
+  }
+  console.log(obj)
+  http.put(`${config.apiEndpoint}plan/${id}/`, {obj})
+  .then(res=> console.log('edited'))
   .catch(e=> console.log(e.message))
   return redirect('/dashboard')
 }

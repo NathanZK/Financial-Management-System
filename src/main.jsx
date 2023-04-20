@@ -8,10 +8,8 @@ import UserContextProvider from './context/userContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <UserContextProvider>
-    <ChakraProvider>
-    <App />
-    </ChakraProvider>
-    </UserContextProvider>
+      <ChakraProvider>
+        <App />
+      </ChakraProvider>
   </React.StrictMode>,
 )

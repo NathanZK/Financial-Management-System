@@ -10,13 +10,16 @@ function Navbar() {
         setToken(t)
     }, [token])
     return (
-        <Flex as="nav" px="100px" py="20px" alignItems="center"> 
-            <Heading as="h1">My Finances</Heading>
+        <Flex w= '100%' position='fixed' zIndex='10' bg='white' as="nav" px="100px" h= '10vh' alignItems="center"> 
+            <NavLink to= "/">
+                <Heading as="h1">Plan It</Heading>
+
+            </NavLink>
             <Spacer />
 
             <HStack spacing="20px">
                 <NavLink to='/'>Home</NavLink>
-                {token ?
+                {token!= null ?
                     (<Wrap>
                         <WrapItem>
                             <NavLink to="/dashboard">
@@ -32,9 +35,9 @@ function Navbar() {
                         Login
                     </NavLink>
                     <NavLink to= '/register'>
-                    <Button colorScheme='blue'>
-                        Get Started
-                    </Button>
+                        <Button colorScheme='blue'>
+                            Get Started
+                        </Button>
                     </NavLink>
                     </Flex>
                 }

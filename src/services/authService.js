@@ -1,7 +1,6 @@
 import jwtDecode from 'jwt-decode';
 import http from './httpServices'
 import config from '../config.json'
-import { redirect } from 'react-router-dom';
 
 const tokenKey= 'token'
 
@@ -9,6 +8,7 @@ http.setJwt(getJwt())
 export async function auth (username, password){
     const {data}=await http.post(`${config.apiEndpoint}token/`, {username, password})
     const {access } = data
+    
     localStorage.setItem(tokenKey, access)
 }
 

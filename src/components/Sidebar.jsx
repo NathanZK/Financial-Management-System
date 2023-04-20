@@ -1,11 +1,11 @@
-import { ArrowForwardIcon, CalendarIcon, EditIcon, AddIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, CalendarIcon, EditIcon, AddIcon, BellIcon, TimeIcon, SmallAddIcon } from "@chakra-ui/icons";
 import { ListItem, List, ListIcon, Flex, Spacer } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom"
 import { logout } from "../services/authService";
 
 const Sidebar = () => {
     return ( 
-        <Flex h= '80vh' flexDirection='column' alignItems='space-between'>
+        <Flex position='fixed' h= '80vh' flexDirection='column' alignItems='space-between'>
             <List color="white" fontSize="1.2em" spacing={4}>
                 <ListItem>
                     <NavLink to="">
@@ -30,14 +30,20 @@ const Sidebar = () => {
                 </ListItem>
                 <ListItem>
                     <NavLink to="plans">
-                        <ListIcon as={EditIcon} />
-                        Plans
+                        <ListIcon as={TimeIcon} />
+                        Budget
                     </NavLink>
                 </ListItem>
                 <ListItem>
                     <NavLink to="fundme">
-                        <ListIcon as={EditIcon} />
+                        <ListIcon as={BellIcon} />
                         Fund Me
+                    </NavLink>
+                </ListItem>
+                <ListItem>
+                    <NavLink to="campaigns">
+                        <ListIcon as={SmallAddIcon} />
+                        Campaigns
                     </NavLink>
                 </ListItem>
             </List>

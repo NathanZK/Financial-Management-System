@@ -21,7 +21,7 @@ const Planning = ({ onSave }) => {
     getCategory()
     .then(res=> setCategories(res.data))
     .catch(err=> console.log('e'))
-  })
+  }, [])
 
 
   

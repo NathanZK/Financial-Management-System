@@ -7,7 +7,7 @@ import Sidebar from "../components/Sidebar";
 export default function RootLayout() {
   return (<div>
         <Navbar/>
-        <main>
+        <main style={{position:'relative', top: '10vh'}}>
             <Outlet/>
         </main>
         </div>

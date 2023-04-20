@@ -11,25 +11,10 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Form, NavLink, redirect } from 'react-router-dom';
+import { register } from './../services/userService';
 
 function Register(props) {
-    const toast = useToast();
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const handleSubmit = (event) => {
-      event.preventDefault();
-      // Here you can add your authentication logic
-      // Show success message with toast
-      toast({
-        title: "Signed up!",
-        description: "Welcome to our community!",
-        status: "success",
-        duration: 5000,
-        isClosable: true,
-      });
-    };
+    
   
     return (
       <Box py="10">
@@ -68,12 +53,19 @@ export const registerUser= async ({request}) => {
     
     const res= await request.formData()
     const submission= {
+        name: res.get('username'),
         username: res.get('username'),
         email: res.get('email'),
-        password: res.get('password')
+        password: res.get('password'),
+        isStudent: true
     }
-    
     console.log(submission)
-    return redirect('/dashboard')
+    register(submission)
+    .then(res=> {
+      return redirect('/dashboard')
+    })
+    .catch(err=>{return null} )
+    
+    
   }
   

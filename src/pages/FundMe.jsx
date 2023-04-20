@@ -7,6 +7,7 @@ import {
   Button,
   Heading,
 } from "@chakra-ui/react";
+import { Form } from "react-router-dom";
 
 function FundMe() {
     const [tuitionFees, setTuitionFees] = useState("");
@@ -27,38 +28,27 @@ function FundMe() {
         <Heading as="h2" size="md" mb={4}>
           Create a Fundraising Campaign
         </Heading>
-        <form onSubmit={handleSubmit}>
+        <Form method="post" action="/dashboard/fundme">
           <FormControl id="tuitionFees" mb={4}>
-            <FormLabel>Tuition Fees</FormLabel>
+            <FormLabel> Enter goal</FormLabel>
             <Input
               type="number"
-              placeholder="Enter your tuition fees"
-              value={tuitionFees}
-              onChange={(e) => setTuitionFees(Number(e.target.value))}
-            />
-          </FormControl>
-          <FormControl id="textbooks" mb={4}>
-            <FormLabel>Textbooks</FormLabel>
-            <Input
-              type="number"
-              placeholder="Enter your textbook expenses"
-              value={textbooks}
-              onChange={(e) => setTextbooks(Number(e.target.value))}
+              placeholder="Enter your enter goal "
+              name= 'amount'
             />
           </FormControl>
           <FormControl id="fundraisingGoal" mb={4}>
             <FormLabel>Fundraising Goal</FormLabel>
             <Input
-              type="number"
-              placeholder="Enter your fundraising goal"
-              value={fundraisingGoal}
-              onChange={(e) => setFundraisingGoal(Number(e.target.value))}
+              type="text"
+              placeholder="Enter reason"
+              name="reason"
             />
           </FormControl>
           <Button type="submit" colorScheme="blue">
             Create Campaign
           </Button>
-        </form>
+        </Form>
       </Box>
     );
 }
