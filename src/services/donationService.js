@@ -19,17 +19,3 @@ export async function donate({request}){
   .catch(e=> console.log('error submitting'))
   return redirect('/dashboard')
 }
-
-export async function editCategory(id, name){
-  http.put(`${config.apiEndpoint}category/${id}/`, {name})
-  .then(res=> res)
-  .catch(e=> console.log(e.message))
-  return redirect('/dashboard')
-}
-
-export async function deleteCategory(id){
-  http.delete(`${config.apiEndpoint}category/${id}/`)
-  .then(res=> {console.log(res)})
-  .catch(e=> console.log('err'))
-  return redirect('/dashboard')
-}

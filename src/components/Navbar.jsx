@@ -12,7 +12,7 @@ function Navbar() {
     return (
         <Flex w= '100%' position='fixed' zIndex='10' bg='white' as="nav" px="100px" h= '10vh' alignItems="center"> 
             <NavLink to= "/">
-                <Heading as="h1">Plan It</Heading>
+                <Heading as="h1">FMS</Heading>
 
             </NavLink>
             <Spacer />

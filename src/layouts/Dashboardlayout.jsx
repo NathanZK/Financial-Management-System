@@ -2,6 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import {Grid, GridItem} from '@chakra-ui/react'
 import Sidebar from "../components/Sidebar";
 import { useEffect, useState } from "react";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 function DashboardLayout() {
     const [token,setToken]=  useState(null)
@@ -25,6 +26,7 @@ function DashboardLayout() {
             colSpan={{ base: 6, lg: 4, xl: 5}}
             p="40px"
             >
+            <Breadcrumbs />
             <Outlet />
             </GridItem>
         </Grid>
