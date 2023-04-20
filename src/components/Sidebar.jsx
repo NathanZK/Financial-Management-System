@@ -14,18 +14,16 @@ const Sidebar = () => {
                     </NavLink>
         
                 </ListItem>
-
-                <ListItem>
-                    <NavLink to="planning">
-                        <ListIcon as={AddIcon} />
-                        Planning
-                    </NavLink>
-                </ListItem>
-
                 <ListItem>
                     <NavLink to="categories">
                         <ListIcon as={EditIcon} />
                         Categories
+                    </NavLink>
+                </ListItem>
+                <ListItem>
+                    <NavLink to="planning">
+                        <ListIcon as={AddIcon} />
+                        Planning
                     </NavLink>
                 </ListItem>
                 <ListItem>

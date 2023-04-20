@@ -49,9 +49,6 @@ const LandingPage = () => {
                   Get Started
                 </Button>
                 </NavLink>
-                <NavLink to='campaigns'>
-                <Button rounded={'full'}>Donate</Button>
-                </NavLink>
               </Stack>
             </Stack>
             <Image maxHeight={500}
