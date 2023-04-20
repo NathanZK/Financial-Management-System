@@ -33,6 +33,18 @@ const Sidebar = () => {
                     </NavLink>
                 </ListItem>
                 <ListItem>
+                    <NavLink to="income">
+                        <ListIcon as={SmallAddIcon} />
+                        Income
+                    </NavLink>
+                </ListItem>
+                <ListItem>
+                    <NavLink to="expense">
+                        <ListIcon as={SmallAddIcon} />
+                        Expense
+                    </NavLink>
+                </ListItem>
+                <ListItem>
                     <NavLink to="fundme">
                         <ListIcon as={BellIcon} />
                         Fund Me

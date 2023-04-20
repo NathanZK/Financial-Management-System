@@ -19,3 +19,16 @@ export async function addPost({request}){
   .catch(e=> console.log('error submitting'))
   return redirect('/dashboard')
 }
+
+export async function addExpense({request}){
+  const res= await request.formData()
+  const submission= {
+    category : res.get('name'),
+    amount: res.get('amount')
+  }
+  console.log(submission)
+  http.post(`${config.apiEndpoint}expense/`, submission)
+  .then(res=>{console.log(res)})
+  .catch(e=> console.log('error submitting'))
+  return redirect('/dashboard')
+}

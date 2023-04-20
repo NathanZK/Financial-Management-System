@@ -31,6 +31,9 @@ import { addPost } from './services/FundService'
 import CampaignLayout from './layouts/CampaignLayout'
 import { donate } from './services/donationService'
 import Error from './pages/Error'
+import Income from './pages/Income'
+import { addIncome } from './services/incomeService'
+import Expense from './pages/Expense'
 
 // router and routes
 const router = createBrowserRouter(
@@ -44,6 +47,8 @@ const router = createBrowserRouter(
         <Route path="categories" element={<Categories />} action={addCategory}  />
         <Route path="plans" element={<Plans />} />
         <Route path= "fundme" element= {<FundMe/>} action={addPost}/>
+        <Route path= "income" element={<Income/>} action={addIncome}/>
+        <Route path= "expense" element={<Expense/>} action={addIncome}/>
         <Route path= "campaigns" element= {<CampaignLayout/>} action={donate}>
           <Route index element={<Campaign/>}/>
           <Route path=':id' element= {<Donate/>} />
